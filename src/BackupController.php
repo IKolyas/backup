@@ -38,12 +38,10 @@ class BackupController
      */
     public function download(Request $request)
     {
-        $disk = $request->get('disk');
+
         $file = $request->get('file');
 
-        $storage = Storage::disk($disk);
-
-        $fullPath = $storage->getAdapter()->applyPathPrefix($file);
+        $fullPath = Storage::url($file);
 
         if (File::isFile($fullPath)) {
             return response()->download($fullPath);
