@@ -41,7 +41,7 @@ class BackupController
 
         $file = $request->get('file');
 
-        $fullPath = Storage::url($file);
+        $fullPath = Storage::disk('local')->url($file);
 
         if (File::isFile($fullPath)) {
             return response()->download($fullPath);
