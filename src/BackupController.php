@@ -43,7 +43,7 @@ class BackupController
 
         $storage = Storage::disk($disk);
 
-        $fullPath = $storage->getDriver()->getAdapter()->applyPathPrefix($file);
+        $fullPath = $storage->getAdapter()->applyPathPrefix($file);
 
         if (File::isFile($fullPath)) {
             return response()->download($fullPath);
